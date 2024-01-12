@@ -13,3 +13,16 @@ El objetivo principal de este proyecto es desarrollar una aplicación que permit
 
 ## Descripción técnica
 
+
+## Fuentes y tecnologías utilizadas
+
+Las tecnologías de las que nos hemos apoyado a la hora de la realización de este proyecto se pueden resumir en las aiguientes:
+- **Mediapipe Hands**: Biblioteca utilizada para la deteción y seguimiento de las manos y de sus puntos clave.
+- **OpenCV**: Se emplea para el procesamiento de imágenes, la visualización en tiempo real y el dibujo en la imagen.
+- **Python**: Lenguaje de programación utilizado para implementar la lógica del proyecto.
+
+
+## Conclusiones y propuestas de ampliación
+
+El proyecto ha logrado su objetivo principal de desarrollar una aplicación de didbujo interactivo con varias funcionalidades
+
