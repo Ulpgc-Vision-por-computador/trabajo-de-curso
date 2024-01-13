@@ -118,3 +118,8 @@ Durante el desarrollo, nos hubiera gustado contar con varias cámras calibradas 
 ## Créditos materiales no originales del grupo
 
 Agradecemos a MediaPipe por proporcionar una biblioteca robusta y eficiente para la detección de manos, y una buena guía, de la que nos hemos apoyado significativamente para la reallización de este proyecto. 
+
+
+## Demo
+
+[!Video Demo](https://alumnosulpgc-my.sharepoint.com/:v:/g/personal/eduardo_etopa101_alu_ulpgc_es/EeKF5WvF-AdKmHbXfGxETRsBeieqbzq1_-vm-MMYwY4oiQ?e=RB7ztp&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)(https://alumnosulpgc-my.sharepoint.com/:v:/g/personal/eduardo_etopa101_alu_ulpgc_es/EeKF5WvF-AdKmHbXfGxETRsBeieqbzq1_-vm-MMYwY4oiQ?e=RB7ztp&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)
