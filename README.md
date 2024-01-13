@@ -46,6 +46,59 @@ for position in list_of_draws:
       cv2.line(image, (midpoint_x, midpoint_y), (prev_midpoint_x, prev_midpoint_y), color_point, 5)
 ```
 
+En el código principal se hace lo siguiente:
+- Inicializar las variables para la captura de la webcam, para el control del tiempo y poder añadir delay a las teclas y para añadir la imagen de la paleta de colores.
+- Inicializar un diccionario cuyas claves son los nombres de los colores en la paleta, y sus valores son el color en el sistema BGR junto con la posicion en la que se encuentra el recuadro en la paleta. Tambien se inicializan variables para manejar el color actual seleccionado y la lista de puntos a dibujar.
+- Se inicializa la clase Hands para realizar el tracking, en cada frame de la webcam se realiza el reconocimiento y se almacenan los datos. Para mejorar el rendimiento, durante el trackeo se prohibe la escritura sobre el frame.
+```py
+# Inicializar clase Hands
+with mp_hands.Hands(
+    model_complexity=0,
+    min_detection_confidence=0.5,
+    #max_num_hands=2,
+    min_tracking_confidence=0.5) as hands:
+  
+
+  # Lista para almacenar las posiciones en donde se dibuja con su color  
+  list_of_draws = []
+
+  while cap.isOpened():
+    success, image = cap.read()
+    if not success:
+      print("Ignoring empty camera frame.")
+      continue
+
+    # Almacenar los datos del detector de manos sobre el frame
+    image.flags.writeable = False
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)   
+    results = hands.process(image)
+    image.flags.writeable = True
+    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+```
+- Si se han obtenido resultados de una mano encontrada se llama a `add_points_to_list` la cual decide si se debe añadir un punto en la lista de dibujos o no.
+- Despues de procesar el frame se llama a `draw_lines` para que lea la lista y muestre el dibujo.
+- En la parte final del código se encuentran las acciones por teclas. Si se pulsa la 'z' se borra un elemento de la lista por lo que se estaria deshaciendo el dibujo. Si se pulsa 'd' se avanza al siguiente color dentro de la paleta de colores, se ha añadido un delay para que no avance más de una vez seguida accidentalmente. Si se pulsa 'q' se termina el programa.
+```py
+# Si se pulsa 'z' deshacer lo que se ha dibujado    
+    if (cv2.waitKey(1) & 0xFF  == ord('z')):
+      while list_of_draws and list_of_draws[-1][0] == (-1, -1, -1):
+        list_of_draws.pop()
+      
+      if list_of_draws:
+        list_of_draws.pop() 
+
+    # Si se pulsa 'd' cambiar de color
+    elif (cv2.waitKey(1) & 0xFF  == ord('d')):
+      current_time = time.time()
+      if current_time - last_d_key_press_time >= 1.1:
+          current_color_index = (current_color_index +1) % len(color_names)
+          last_d_key_press_time = current_time
+
+    # Terminar si se pulsa 'q'
+    elif cv2.waitKey(1) & 0xFF == ord('q'):
+      break
+```
+
 ## Fuentes y tecnologías utilizadas
 
 Las tecnologías de las que nos hemos apoyado a la hora de la realización de este proyecto se pueden resumir en las aiguientes:
