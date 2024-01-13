@@ -13,6 +13,38 @@ El objetivo principal de este proyecto es desarrollar una aplicación que permit
 
 ## Descripción técnica
 
+El programa cuenta con dos funciones que se emplean en el código principal:
+- `add_points_to_list`: Recibe la lista donde se almacenan los puntos a dibujar, los datos de la mano detectada, y el color que se esta usando en ese frame. La función toma las posiciones de los dedos pulgar e índice para calcular la distancia a la que se encuentran, en caso de que esta distancia sea menor a cierto umbral quiere decir que se esta haciendo el gesto de dibujar, por lo tanto se calcula la posición media entre ambos dedos y se añade a la lista junto con el color. Cuando no se esta haciendo el gesto de dibujar se añade una posición no útil a lista (-1, -1, -1), esto permite saber cuando la persona ha querido parar de dibujar y luego continuar en otra parte de la imagen.
+```py
+if distance < threshold:
+      midpoint = ((thumb_x + index_x) / 2, (thumb_y + index_y) / 2, (thumb_z + index_z) / 2, point_color)
+      list_of_draws.append(midpoint)
+
+  # Añadir una posicion sin uso (-1, -1, -1) para cuando no se este dibujando
+  elif list_of_draws and list_of_draws[-1][0] != -1: 
+    list_of_draws.append((-1, -1, -1, (255, 255, 255)))
+```
+
+- `draw_lines`: Recibe la lista donde se almacenan los puntos a dibujar y el frame actual. La función recorre la lista de puntos mientras guarda el punto actual y el anterior. Se realiza la linea entre puntos siempre y cuando no se este pintando sobre la paleta de colores o la posicion anterior a la actual sea (-1, -1, -1), que esto quiere decir que por un momento se ha parado de dibujar por lo que los puntos no se deben unir. 
+```py
+for position in list_of_draws:
+      prev_x, prev_y, prev_z = x, y, z
+      x, y, z, color_point = position
+
+      # No unir puntos si se paro de dibujar
+      if (x, y, z) == (-1, -1, -1) or (prev_x == -1 and prev_y == -1 and prev_z == -1):
+        continue
+
+      height, width, deep = image.shape
+      midpoint_x, midpoint_y, midpoint_z= int(x * width), int(y * height), int(z * deep)
+      prev_midpoint_x, prev_midpoint_y, prev_midpoint_z= int(prev_x * width), int(prev_y * height), int(prev_z * deep)
+      
+      # Evitar dibujar sobre la paleta
+      if 190 < prev_midpoint_x < 460 and 190 < midpoint_x < 460 and 0 < prev_midpoint_y < 90 and 0 < midpoint_y < 90:
+        continue 
+      
+      cv2.line(image, (midpoint_x, midpoint_y), (prev_midpoint_x, prev_midpoint_y), color_point, 5)
+```
 
 ## Fuentes y tecnologías utilizadas
 
