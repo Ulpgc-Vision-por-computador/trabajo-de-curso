@@ -13,6 +13,19 @@ El objetivo principal de este proyecto es desarrollar una aplicación que permit
 
 ## Descripción técnica
 
+El programa cuenta con dos funciones que se emplean en el código principal:
+- `add_points_to_list`: Recibe la lista donde se almacenan los puntos a dibujar, los datos de la mano detectada, y el color que se esta usando en ese frame. La función toma las posiciones de los dedos pulgar e índice para calcular la distancia a la que se encuentran, en caso de que esta distancia sea menor a cierto umbral quiere decir que se esta haciendo el gesto de dibujar, por lo tanto se calcula la posición media entre ambos dedos y se añade a la lista junto con el color. Cuando no se esta haciendo el gesto de dibujar se añade una posición no útil a lista (-1, -1, -1), esto permite saber cuando la persona ha querido parar de dibujar y luego continuar en otra parte de la imagen.
+```py
+if distance < threshold:
+      midpoint = ((thumb_x + index_x) / 2, (thumb_y + index_y) / 2, (thumb_z + index_z) / 2, point_color)
+      list_of_draws.append(midpoint)
+
+  # Añadir una posicion sin uso (-1, -1, -1) para cuando no se este dibujando
+  elif list_of_draws and list_of_draws[-1] != (-1, -1, -1): 
+    list_of_draws.append((-1, -1, -1, (255, 255, 255)))
+```
+
+- `draw_lines`: Recibe la lista donde se almacenan los puntos a dibujar y el frame actual. La función
 
 ## Fuentes y tecnologías utilizadas
 
