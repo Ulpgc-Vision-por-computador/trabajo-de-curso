@@ -21,7 +21,7 @@ if distance < threshold:
       list_of_draws.append(midpoint)
 
   # Añadir una posicion sin uso (-1, -1, -1) para cuando no se este dibujando
-  elif list_of_draws and list_of_draws[-1] != (-1, -1, -1): 
+  elif list_of_draws and list_of_draws[-1][0] != -1: 
     list_of_draws.append((-1, -1, -1, (255, 255, 255)))
 ```
 
