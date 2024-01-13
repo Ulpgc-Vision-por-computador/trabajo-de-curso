@@ -24,5 +24,5 @@ Las tecnologías de las que nos hemos apoyado a la hora de la realización de es
 
 ## Conclusiones y propuestas de ampliación
 
-El proyecto ha logrado su objetivo principal de desarrollar una aplicación de didbujo interactivo con varias funcionalidades
+El proyecto ha logrado su objetivo principal de desarrollar una aplicación de dibujo interactivo con varias funcionalidades para borrar 
 
