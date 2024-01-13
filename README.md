@@ -24,5 +24,12 @@ Las tecnologías de las que nos hemos apoyado a la hora de la realización de es
 
 ## Conclusiones y propuestas de ampliación
 
-El proyecto ha logrado su objetivo principal de desarrollar una aplicación de dibujo interactivo con varias funcionalidades para borrar 
+El proyecto ha logrado su objetivo principal de desarrollar una aplicación de dibujo interactivo con varias funcionalidades, se observa un rendimiento altamente satisfactorio en buenas condiciones lumínicas, y difícilmente se presenta un rendimiento no deseado. Una propuesta de ampliación interesante sería añadir la posibilidad de hacer dibujos en 3d sobre el espacio, lamentablemente la librería OpenCV implementa una funcionalidad que nos permita realizar esa tarea.
 
+## Herramientas con las que nos hubiera gustado contar
+
+Durante el desarrollo, nos hubiera gustado contar con varias cámras calibradas  para poder estimar de forma adecuada la profndidad de las manos en el espacio y conseguir una mayorprecisión a la hora de la detección de gestos y también para la propuesta de apmliación de dibujo 3d.
+
+## Créditos materiales no originales del grupo
+
+Agradecemos a MediaPipe por proporcionar una biblioteca robusta y eficiente para la detección de manos, y una buena guía, de la que nos hemos apoyado significativamente para la reallización de este proyecto. 
